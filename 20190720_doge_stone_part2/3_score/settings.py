@@ -1,0 +1,9 @@
+DISPLAY_WIDTH = 800
+DISPLAY_HEIGHT = 600
+TITLE = "Rabbit Run"
+FPS = 60
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0) # 新增
+
+PLAYER_SPEED_X = 5
