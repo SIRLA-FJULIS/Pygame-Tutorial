@@ -42,15 +42,35 @@ class Mob(pygame.sprite.Sprite):
 	def __init__(self, game):
 		pygame.sprite.Sprite.__init__(self)
 		self.game = game 
-		self.image = self.game.mob_img
+		self.image_orig = random.choice(self.game.mob_images) # 新增
+		self.image = self.image_orig.copy() # 新增
 		self.rect = self.image.get_rect()
 		self.radius = int(self.rect.width * .85 / 2)
 		self.rect.x = random.randrange(DISPLAY_WIDTH - self.rect.width)
 		self.rect.y = random.randrange(-100, -40)
 		self.speed_y = random.randrange(1, 8)
 		self.speed_x = random.randrange(-3, 3)
-		
+		# -------------------------新增----------------------------
+		self.rot = 0
+		self.rot_speed = random.randrange(-8, 8)
+		self.last_update = pygame.time.get_ticks()
+		# --------------------------------------------------------
+	
+	# ---------------------------------新增-----------------------------------
+	def rotate(self):
+		now = pygame.time.get_ticks()
+		if now - self.last_update > 50:
+			self.last_update = now
+			self.rot = (self.rot + self.rot_speed) % 360
+			new_image = pygame.transform.rotate(self.image_orig, self.rot)
+			old_center = self.rect.center
+			self.image = new_image
+			self.rect = self.image.get_rect()
+			self.rect.center = old_center
+	# ------------------------------------------------------------------------
+
 	def update(self):
+		self.rotate()
 		self.rect.x += self.speed_x
 		self.rect.y += self.speed_y
 		if self.rect.top > DISPLAY_HEIGHT or self.rect.right < 0 or self.rect.left > DISPLAY_WIDTH:

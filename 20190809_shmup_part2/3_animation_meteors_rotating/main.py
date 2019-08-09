@@ -33,8 +33,16 @@ class Game:
 		self.player_img = pygame.image.load(path.join(self.img_dir, 'playerShip1_orange.png')).convert()
 		self.player_img = pygame.transform.scale(self.player_img, (50, 38))
 		self.player_img.set_colorkey(BLACK)
-		self.mob_img = pygame.image.load(path.join(self.img_dir, 'meteorBrown_med1.png')).convert()
-		self.mob_img.set_colorkey(BLACK)
+		# ---------------------------------------修改與新增--------------------------------------
+		self.mob_images = []
+		mob_list = ['meteorBrown_big1.png', 'meteorBrown_med1.png', 'meteorBrown_med1.png',
+					'meteorBrown_med3.png', 'meteorBrown_small1.png', 'meteorBrown_small2.png',
+					'meteorBrown_tiny1.png']
+		for img_name in mob_list:
+			mob_img = pygame.image.load(path.join(self.img_dir, img_name)).convert()
+			mob_img.set_colorkey(BLACK)
+			self.mob_images.append(mob_img)
+		# ---------------------------------------------------------------------------------------
 		self.bullet_img = pygame.image.load(path.join(self.img_dir, 'laserRed16.png')).convert()
 		self.bullet_img.set_colorkey(BLACK)
 
