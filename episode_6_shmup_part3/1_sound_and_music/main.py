@@ -69,7 +69,7 @@ class Game:
 
 	def new(self):
 		self.playing = True
-		pygame.mixer.music.play(loops=-1)
+		pygame.mixer.music.play(loops=-1) # 新增
 		
 	def events(self):
 		for event in pygame.event.get():
