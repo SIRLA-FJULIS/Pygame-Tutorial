@@ -22,7 +22,6 @@ class Game:
 
 		self.font_filename = pygame.font.match_font('arial')
 
-		''' 刪除 -> 搬移至new()
 		self.all_sprites = pygame.sprite.Group()
 		self.mobs = pygame.sprite.Group()
 		self.player = Player(self)
@@ -35,7 +34,6 @@ class Game:
 		self.powerups = pygame.sprite.Group()
 
 		self.score = 0
-		'''
 	
 	def load_data(self):
 		self.background = pygame.image.load(path.join(self.img_dir, 'starfield.png')).convert()
@@ -114,20 +112,6 @@ class Game:
 
 	def new(self):
 		self.intro = False # 新增
-		# -----------------------------從init()搬移過來--------------------------------
-		self.all_sprites = pygame.sprite.Group()
-		self.mobs = pygame.sprite.Group()
-		self.player = Player(self)
-		self.all_sprites.add(self.player)
-		for i in range(8):
-			m = Mob(self)
-			self.all_sprites.add(m)
-			self.mobs.add(m)
-		self.bullets = pygame.sprite.Group()
-		self.powerups = pygame.sprite.Group()
-
-		self.score = 0
-		# -----------------------------------------------------------------
 		self.playing = True
 		pygame.mixer.music.play(loops=-1)
 		

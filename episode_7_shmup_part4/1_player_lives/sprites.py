@@ -108,6 +108,7 @@ class Bullet(pygame.sprite.Sprite):
 		if self.rect.bottom < 0:
 			self.kill()
 
+# ------------------------------新增-------------------------------------
 class Explosion(pygame.sprite.Sprite):
 	def __init__(self, game, center, size):
 		pygame.sprite.Sprite.__init__(self)
@@ -132,3 +133,4 @@ class Explosion(pygame.sprite.Sprite):
 				self.image = self.game.explosion_anim[self.size][self.frame]
 				self.rect = self.image.get_rect()
 				self.rect.center = center
+# ----------------------------------------------------------------------------

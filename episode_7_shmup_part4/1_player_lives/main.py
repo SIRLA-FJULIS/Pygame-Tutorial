@@ -57,7 +57,7 @@ class Game:
 		self.explosion_anim = {}
 		self.explosion_anim['lg'] = []
 		self.explosion_anim['sm'] = []
-		self.explosion_anim['player'] = []
+		self.explosion_anim['player'] = [] # 新增
 		for i in range(9):
 			filename = 'regularExplosion0{}.png'.format(i)
 			img = pygame.image.load(path.join(self.img_dir, filename)).convert()

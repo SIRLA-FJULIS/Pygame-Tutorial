@@ -28,6 +28,8 @@ class Player(pygame.sprite.Sprite):
 		# ----------------------------------------新增---------------------------------------
 		if self.power >= 2 and pygame.time.get_ticks() - self.power_time > POWERUP_TIME:
 			self.power -= 1
+			if self.power == 1:
+				self.shoot_delay += 100
 			self.power_time = pygame.time.get_ticks()
 		# -----------------------------------------------------------------------------------
 
@@ -56,6 +58,7 @@ class Player(pygame.sprite.Sprite):
 	# ---------------------新增-------------------
 	def powerup(self):
 		self.power += 1
+		self.shoot_delay -= 100
 		self.power_time = pygame.time.get_ticks()
 	# --------------------------------------------
 	
@@ -66,7 +69,6 @@ class Player(pygame.sprite.Sprite):
 			self.game.all_sprites.add(bullet)
 			self.game.bullets.add(bullet)
 			self.game.shoot_sound.play()
-		# -------------------------------------------------------------------
 		if self.power >= 2:
 			bullet1 = Bullet(self.game, self.rect.left, self.rect.centery)
 			bullet2 = Bullet(self.game, self.rect.right, self.rect.centery)
@@ -75,6 +77,7 @@ class Player(pygame.sprite.Sprite):
 			self.game.bullets.add(bullet1)
 			self.game.bullets.add(bullet2)
 			self.game.shoot_sound.play()
+		# -------------------------------------------------------------------
 
 	def hide(self):
 		self.hidden = True
